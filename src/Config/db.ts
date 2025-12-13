@@ -1,11 +1,11 @@
 import { Pool } from "pg";
 
 
-const pool = new Pool({
+export const pool = new Pool({
     connectionString: 'postgresql://neondb_owner:npg_eHDaEI8tNi2f@ep-empty-rain-add5y5m3-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
 })
 
-const initDB = async()=>{
+export const initDB = async()=>{
     await pool.query(`
         CREATE TABLE IF NOT EXISTS users(
         id SERIAL PRIMARY KEY,
@@ -37,4 +37,4 @@ const initDB = async()=>{
 
         console.log("database connected")
 
-}
+};

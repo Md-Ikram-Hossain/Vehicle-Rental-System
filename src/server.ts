@@ -1,11 +1,13 @@
 import express, { Request, Response } from "express"
-
+import { userRoute } from "./modules/users/user.route";
+import { initDB } from "./Config/db";
+import { authRoute } from "./modules/auth/auth.route";
+import { vehicleRoute } from "./modules/vehicles/vehicle.route";
+import { bookingRoute } from "./modules/bookings/booking.route";
 const app = express()
 app.use(express.json());
 
-
-initDB()
-
+initDB();
 
 
 
@@ -13,9 +15,16 @@ initDB()
 
 
 
-app.post("/users", async(req:Request, res:Response) =>{
-    const body = req.body;
-})
+
+app.use("/api/v1/users", userRoute)
+app.use("/api/v1/vehicles", vehicleRoute)
+app.use("/api/v1/bookings", bookingRoute)
+app.use("/api/v1/auth", authRoute)
+
+
+
+
+
 
 app.get('/', (req:Request, res:Response) =>{
     res.status(200).json({
